@@ -1,4 +1,4 @@
-FROM registry.cn-beijing.aliyuncs.com/swang/jdk8:latest
+FROM registry.cn-beijing.aliyuncs.com/swang/jdk:8
 MAINTAINER swang
 WORKDIR /usr/local
 RUN rm -rf /etc/localtime && ln -s /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
@@ -10,6 +10,6 @@ RUN yum -y update
 RUN yum -y install wget unzip
 RUN wget https://sonarsource.bintray.com/Distribution/sonarqube/sonarqube-6.7.zip
 RUN unzip sonarqube-6.7.zip && rm -rf sonarqube-6.7.zip && mv sonarqube-6.7 sonarqube
-VOLUME ["/usr/local/sonarqube/logs"]
+VOLUME ["/usr/local/sonarqube/logs","/usr/local/sonarqube/conf","/usr/local/sonarqube/extensions"]
 EXPOSE 9000
 ENTRYPOINT ["/usr/local/sonarqube/bin/linux-x86-64/sonar.sh", "start"]
