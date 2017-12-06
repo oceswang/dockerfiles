@@ -15,7 +15,7 @@ RUN unzip sonarqube-6.7.zip && rm -rf sonarqube-6.7.zip && mv sonarqube-6.7 sona
 VOLUME ["/usr/local/sonarqube/logs","/usr/local/sonarqube/conf","/usr/local/sonarqube/extensions"]
 COPY run.sh /usr/local/sonarqube/bin/
 RUN chmod +x /usr/local/sonarqube/bin/run.sh
-RUN wget -O /usr/local/bin/gosu "https://github.com/tianon/gosu/releases/download/1.10/gosu-$(dpkg --print-architecture | awk -F- '{ print $NF }')" \
+RUN wget -O /usr/local/bin/gosu "https://github.com/tianon/gosu/releases/download/1.10/gosu-amd64" \
     && chmod +x /usr/local/bin/gosu \
     && gosu nobody true
 ENTRYPOINT ["./sonarqube/bin/run.sh"]
